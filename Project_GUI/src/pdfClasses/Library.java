@@ -3,6 +3,7 @@ package pdfClasses;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
 
@@ -30,9 +31,26 @@ public class Library {
 		PDFList.add(pdf);
 	}
 	
+	public void addPDFs(List<PDF> pdfs){
+		PDFList.addAll(pdfs);
+	}
+	
+	public void addPDFFiles(List<File> pdfFiles){
+		for(File f : pdfFiles){
+			PDF pdf = new PDF(f);
+			this.addPDF(pdf);
+		}
+	}
+	
 	public void removePDF(PDF pdf){
 		if(this.contains(pdf)){
 			PDFList.remove(pdf);
+		}
+	}
+	
+	public void printAllPaths(){
+		for(PDF pdf : PDFList){
+			System.out.println(pdf.getFileLocation());
 		}
 	}
 	

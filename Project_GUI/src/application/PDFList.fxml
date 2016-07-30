@@ -11,7 +11,7 @@
 
 <BorderPane prefHeight="471.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PDFListController">
    <top>
-      <BorderPane fx:id="window" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
             <TextField prefHeight="26.0" prefWidth="177.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
