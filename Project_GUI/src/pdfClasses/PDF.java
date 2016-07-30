@@ -7,7 +7,7 @@ public class PDF {
 	private String fileLocation;
 	private File file = null;
 	
-	
+	private MetadataStorer mds = new MetadataStorer();
 	
 	public PDF(String fileLocation){
 		File tempFile = new File(fileLocation);
@@ -24,11 +24,19 @@ public class PDF {
 		}
 	}
 	
+	public void populateMeta(){
+		//GET JSON FILE FROM PROCESSED ITEMS AND STORE IN METADATASTORER USING JACKSON
+	}
+	
 	public String getFileLocation(){
 		return this.fileLocation;
 	}
 	
 	public File getFile(){
 		return this.file;
+	}
+	
+	public MetadataStorer getMetadata(){
+		return this.mds;
 	}
 }
