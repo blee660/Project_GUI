@@ -56,7 +56,7 @@ public class Library {
 	public int size(){
 		return PDFList.size();
 	}
-	
+
 	
 	public boolean contains(PDF pdf){
 		if(PDFList.contains(pdf)){

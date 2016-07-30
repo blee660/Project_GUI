@@ -1,6 +1,9 @@
 package pdfClasses;
 
 import java.io.File;
+import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class PDF {
 
@@ -24,8 +27,14 @@ public class PDF {
 		}
 	}
 	
-	public void populateMeta(){
-		//GET JSON FILE FROM PROCESSED ITEMS AND STORE IN METADATASTORER USING JACKSON
+	public void populateMeta(File f){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mds = mapper.readValue(f, MetadataStorer.class);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getFileLocation(){
