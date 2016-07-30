@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.FileChooser;
+import pdfClasses.Library;
 
 public class PDFListController {
 
@@ -20,10 +21,10 @@ public class PDFListController {
 		List<File> selectedFiles = fc.showOpenMultipleDialog(((Node) event.getSource()).getScene().getWindow());
 
 		if (selectedFiles != null) {
-			for (File f : selectedFiles) {
-				System.out.println(f.getAbsolutePath());
-			}
+			Library.getInstance().addPDFFiles(selectedFiles);
 		}
+		
+		Library.getInstance().printAllPaths();
 	}
 
 	public void removePDF(ActionEvent event) {
@@ -31,7 +32,7 @@ public class PDFListController {
 	}
 
 	private void setFilters() {
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", ".pdf");
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
 		fc.getExtensionFilters().add(extFilter);
 		fc.setSelectedExtensionFilter(extFilter);
 	}
