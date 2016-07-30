@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Library {
 
-	
 	/*
 	 * singleton implementation of a library
 	 */
@@ -27,7 +26,7 @@ public class Library {
 	//library implementation
 	private ArrayList<PDF> PDFList = new ArrayList<PDF>();
 	
-	public void addPDF(PDF pdf){
+	public void addPDF(PDF pdf){		
 		PDFList.add(pdf);
 	}
 	
@@ -81,6 +80,5 @@ public class Library {
 		}
 		
 		return false;
-	}
-	
+	}	
 }
