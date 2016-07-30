@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="471.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="471.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PDFListController">
    <top>
       <BorderPane prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -37,8 +37,8 @@
    <bottom>
       <Pane prefHeight="45.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="11.0" layoutY="9.0" mnemonicParsing="false" text="+" />
-            <Button layoutX="44.0" layoutY="9.0" mnemonicParsing="false" text="-" />
+            <Button layoutX="11.0" layoutY="9.0" mnemonicParsing="false" onAction="#addPDF" text="+" />
+            <Button layoutX="44.0" layoutY="9.0" mnemonicParsing="false" onAction="#removePDF" text="-" />
          </children>
       </Pane>
    </bottom>
