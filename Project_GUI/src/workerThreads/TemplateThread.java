@@ -6,12 +6,13 @@ import java.util.List;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
 import pdfClasses.PDF;
 
 public class TemplateThread extends Service<Void> {
 
 	public TemplateThread(){
-		this.executeTask(createTask());
+		this.start();
 		populateReliant();
 	}
 	
@@ -23,9 +24,11 @@ public class TemplateThread extends Service<Void> {
 	public void addPDF(PDF pdf) {
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
-			if (!this.isRunning()) {
-				this.executeTask(createTask());
-			}
+		}
+		
+		if (!isRunning()) {
+			this.reset();
+			this.start();
 		}
 	}
 
