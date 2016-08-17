@@ -33,26 +33,26 @@
    <left>
       <BorderPane prefHeight="471.0" prefWidth="236.0" BorderPane.alignment="CENTER">
          <center>
-            <fx:include fx:id="PDFList" source="PDFList.fxml"/>
+            <fx:include fx:id="PDFList" source="PDFList.fxml" />
          </center>
       </BorderPane>
    </left>
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="80.0" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Classification"> 
           	<content>
-            	<fx:include fx:id="ClassificationTab" source="ClassificationTab.fxml"/>
+            	<fx:include fx:id="ClassificationTab" source="ClassificationTab.fxml" />
           	</content>
           </Tab>
           <Tab text="Metadata"> 
           	<content>
-            	<fx:include fx:id="MetadataTab" source="ClassificationTab.fxml"/>
+            	<fx:include fx:id="MetadataTab" source="ClassificationTab.fxml" />
           	</content>
           </Tab>
         </tabs>
          <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" />
+            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
          </BorderPane.margin>
       </TabPane>
    </center>

@@ -42,9 +42,10 @@ public class MyListItem extends HBox{
 	
 	private void setup(){
 		MenuItem item1 = new MenuItem("View as HTML");
-		MenuItem item2 = new MenuItem( "View as PDF");
-		MenuItem item3 = new MenuItem( "Show metadata");
-		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item3);
+		MenuItem item2 = new MenuItem("View as PDF");
+		MenuItem item3 = new MenuItem("Show metadata");
+		MenuItem item4 = new MenuItem("Remove from library");
+		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item3, new SeparatorMenuItem(), item4);
 		
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
