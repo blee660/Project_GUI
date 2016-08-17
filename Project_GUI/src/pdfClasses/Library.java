@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.PDFListController;
+
 public class Library {
 
 	/*
@@ -22,22 +24,33 @@ public class Library {
 		return instance;
 	}
 	
+	
+	//======================================================================
+	private PDFListController plc;
+	public void registerDisplay(PDFListController plc){
+		this.plc = plc;
+	};
+	
 	//======================================================================
 	//library implementation
 	private ArrayList<PDF> PDFList = new ArrayList<PDF>();
 	
 	public void addPDF(PDF pdf){		
 		PDFList.add(pdf);
+		plc.addItem(pdf);
 	}
 	
 	public void addPDFs(List<PDF> pdfs){
-		PDFList.addAll(pdfs);
+		for(PDF pdf:pdfs){
+			this.addPDF(pdf);
+		}
 	}
 	
 	public void addPDFFiles(List<File> pdfFiles){
 		for(File f : pdfFiles){
 			PDF pdf = new PDF(f);
 			this.addPDF(pdf);
+			plc.addItem(pdf);
 		}
 	}
 	

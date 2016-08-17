@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -15,7 +13,7 @@ import pdfClasses.Library;
 import pdfClasses.PDF;
 
 public class PDFListController {
-
+	
 	private FileChooser fc = new FileChooser();
 
 	@FXML
@@ -24,6 +22,7 @@ public class PDFListController {
 	
 	public PDFListController() {
 		setFilters();
+		Library.getInstance().registerDisplay(this);
 	}
 
 	//=============================================================================================================================
@@ -33,7 +32,6 @@ public class PDFListController {
 
 		if (selectedFiles != null) {
 			Library.getInstance().addPDFFiles(selectedFiles);
-			addItem("title", "title", null);
 		}
 		
 		Library.getInstance().printAllPaths();
@@ -54,10 +52,11 @@ public class PDFListController {
 	//=============================================================================================================================
 	//ListView Methods
 	
-	public void addItem(String path, String title, PDF pdf){
+	public void addItem(PDF pdf){
 		System.out.println("here");
-		if(title.equals("")){
-			title = "unknown";
+		String title = "Unknown";
+		if(pdf.getMetadata().getTitle() != null && !pdf.getMetadata().getTitle().equals("")){
+			title = pdf.getMetadata().getTitle();
 		}
 		MyListItem mli = new MyListItem(title, pdf);
 		currentItems.add(mli);
