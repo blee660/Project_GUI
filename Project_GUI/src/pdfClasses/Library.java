@@ -50,7 +50,6 @@ public class Library {
 		for(File f : pdfFiles){
 			PDF pdf = new PDF(f);
 			this.addPDF(pdf);
-			plc.addItem(pdf);
 		}
 	}
 	
