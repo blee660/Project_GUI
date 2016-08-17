@@ -5,10 +5,13 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import application.MyListItem;
+
 public class PDF {
 
 	private String fileLocation;
 	private File file = null;
+	private MyListItem listItem;
 	
 	private MetadataStorer mds = new MetadataStorer();
 	
@@ -47,5 +50,15 @@ public class PDF {
 	
 	public MetadataStorer getMetadata(){
 		return this.mds;
+	}
+	
+	public void setListItem(MyListItem mli){
+		this.listItem = mli;
+	}
+	
+	public void updateListItem(){
+		if(this.getMetadata().getTitle()!= null && this.getMetadata().getTitle()!=""){
+			this.listItem.updateLabel(this.getMetadata().getTitle());
+		}
 	}
 }
