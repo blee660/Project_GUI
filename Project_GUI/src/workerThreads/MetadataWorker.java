@@ -8,6 +8,7 @@ import pdfClasses.PDF;
 public class MetadataWorker extends TemplateThread{
 
 	public static File metadataFile;
+	public static String metadataPath;
 	
 	@Override
 	public void taskLogic(PDF pdf) {
@@ -21,7 +22,7 @@ public class MetadataWorker extends TemplateThread{
 		String metadataPath = homePath + File.separator + "Metadata";
 		metadataFile = new File(metadataPath);
 		metadataFile.mkdir();
-		
+		metadataPath = metadataFile.getPath();
 	}
 
 	@Override
