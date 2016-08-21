@@ -1,14 +1,41 @@
 package application;
 	
+import java.io.File;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import workerThreads.TemplateThread;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class Main extends Application {
+	
+	public static File homeDir;
+	
+	private ArrayList<TemplateThread> workerList = new ArrayList<TemplateThread>();
+	
 	@Override
 	public void start(Stage primaryStage) {
+		
+		registerWorkers();
+		initialWorkerThreadStart();
+		
+		
+		String fileName = System.getProperty("user.home") + File.separator + "GUI700Home";
+		int i = 1;
+		
+		homeDir = new File(fileName);
+		while(homeDir.exists()){
+			fileName = fileName + "(" + i + ")";
+			homeDir = new File(fileName);
+			i++;
+		}
+		
+		homeDir.mkdir();
+		
+		
 		try {
 //			BorderPane root = new BorderPane();
 			
@@ -21,6 +48,17 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	public void registerWorkers(){
+		
+	}
+	
+	public void initialWorkerThreadStart(){
+		for(TemplateThread tt : workerList){
+			tt.start();
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		launch(args);

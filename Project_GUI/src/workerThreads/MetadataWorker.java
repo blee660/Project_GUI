@@ -1,9 +1,13 @@
 package workerThreads;
 
+import java.io.File;
+
+import application.Main;
 import pdfClasses.PDF;
 
 public class MetadataWorker extends TemplateThread{
 
+	public static File metadataFile;
 	
 	@Override
 	public void taskLogic(PDF pdf) {
@@ -13,6 +17,11 @@ public class MetadataWorker extends TemplateThread{
 	@Override
 	public void preExecutionWork() {
 		// IMPLEMENT ANY WORK REQUIRED BEFORE TASKLOGIC HERE
+		String homePath = Main.homeDir.getAbsolutePath();
+		String metadataPath = homePath + File.separator + "Metadata";
+		metadataFile = new File(metadataPath);
+		metadataFile.mkdir();
+		
 	}
 
 	@Override
