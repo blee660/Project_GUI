@@ -10,23 +10,28 @@ import application.MyListItem;
 public class PDF {
 
 	private String fileLocation;
+	private String fileName;
 	private File file = null;
 	private MyListItem listItem;
 	
 	private MetadataStorer mds = new MetadataStorer();
-	
+
 	public PDF(String fileLocation){
 		File tempFile = new File(fileLocation);
 		if(tempFile.exists()){
 			file = tempFile;
 			this.fileLocation = file.getAbsolutePath();
+			addFileName();
 		}
+		
+		
 	}
 	
 	public PDF(File file){
 		if(file.exists()){
 			this.file = file;
 			this.fileLocation = file.getAbsolutePath();
+			addFileName();
 		}
 	}
 	
@@ -60,5 +65,13 @@ public class PDF {
 		if(this.getMetadata().getTitle()!= null && this.getMetadata().getTitle()!=""){
 			this.listItem.updateLabel(this.getMetadata().getTitle());
 		}
+	}
+	
+	private void addFileName(){
+		String[] split = this.fileLocation.split(File.separator);
+		fileName = split[split.length - 2];
+	}
+	public String getFileName(){
+		return this.fileName;
 	}
 }

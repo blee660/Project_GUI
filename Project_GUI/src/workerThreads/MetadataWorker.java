@@ -13,6 +13,7 @@ public class MetadataWorker extends TemplateThread{
 	@Override
 	public void taskLogic(PDF pdf) {
 		// IMPLEMENT LOGIC HERE
+		
 	}
 	
 	@Override
