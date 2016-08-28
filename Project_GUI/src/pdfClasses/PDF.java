@@ -43,6 +43,8 @@ public class PDF {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		this.listItem.updateLabel(this.mds.getTitle());
 	}
 	
 	public String getFileLocation(){

@@ -5,18 +5,23 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 import application.Main;
 import pdfClasses.PDF;
 
 public class MetadataWorker extends TemplateThread{
 
-	private String resourcePath = getClass().getResource("/resources/PDFExtract.jar").getFile();
-	private String templateCommand = "java -jar " + resourcePath + " ";
+	private String templateCommand = "java -jar ";
 	private File outputFile;
-	
 	
 	public MetadataWorker(){
 		super();
+		String resourcePath = getClass().getResource("/resources/PDFExtract.jar").getFile();
+		if(resourcePath.startsWith("/")){
+			resourcePath = resourcePath.substring(1, resourcePath.length());
+		}
+		
+		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override
@@ -27,9 +32,9 @@ public class MetadataWorker extends TemplateThread{
 		Process p;
 		
 		try {
-			p = Runtime.getRuntime().exec(templateCommand);
+			p = Runtime.getRuntime().exec(shellCommand);
 			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String line = "";
 			
 			while((line = reader.readLine())!= null){
@@ -39,6 +44,9 @@ public class MetadataWorker extends TemplateThread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		String outputFileName = outputFile.getPath() + File.separator + pdf.getFileName() + ".txt";
+		pdf.populateMeta(new File(outputFileName));
 	}
 	
 	@Override
