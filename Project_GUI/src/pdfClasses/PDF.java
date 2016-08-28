@@ -68,8 +68,8 @@ public class PDF {
 	}
 	
 	private void addFileName(){
-		String[] split = this.fileLocation.split(File.separator);
-		fileName = split[split.length - 2];
+		String[] split = file.getName().split("\\.");
+		fileName = split[0];
 	}
 	public String getFileName(){
 		return this.fileName;

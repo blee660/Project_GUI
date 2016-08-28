@@ -17,26 +17,22 @@ public class TemplateThread extends Service<Void> {
 
 	private List<PDF> pdfs = Collections.synchronizedList(new ArrayList<PDF>());
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
-	public boolean restart = false;
 	
 	public void addPDF(PDF pdf) {
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
-			if (!this.isRunning()) {
-				restart();
-			}
+			System.out.println("here");
 		}
-	}
-
-	public void restart() {
-		this.reset();
-		this.start();
+		
+		if (!this.isRunning()) {
+			this.restart();
+		}
 	}
 	
 	@Override
 	protected void succeeded(){
 		if(!pdfs.isEmpty()){
-			restart();
+			this.restart();
 		}
 	}
 
@@ -57,7 +53,7 @@ public class TemplateThread extends Service<Void> {
 					addToReliant(temp);
 
 				}
-
+				
 				return null;
 			}
 		};

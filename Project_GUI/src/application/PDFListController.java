@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import pdfClasses.Library;
 import pdfClasses.PDF;
+import workerThreads.*;
 
 public class PDFListController {
 	

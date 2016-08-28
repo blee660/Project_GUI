@@ -28,8 +28,7 @@ public class Main extends Application {
 		
 		homeDir = new File(fileName);
 		while(homeDir.exists()){
-			fileName = fileName + "(" + i + ")";
-			homeDir = new File(fileName);
+			homeDir = new File(fileName + "(" + i + ")");
 			i++;
 		}
 		
@@ -38,7 +37,6 @@ public class Main extends Application {
 		
 		try {
 //			BorderPane root = new BorderPane();
-			
 			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));
 			Scene scene = new Scene(root,900,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -58,7 +56,6 @@ public class Main extends Application {
 			tt.start();
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		launch(args);
