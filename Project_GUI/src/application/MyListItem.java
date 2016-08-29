@@ -1,11 +1,12 @@
 package application;
 
+import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseButton;
@@ -23,6 +24,7 @@ public class MyListItem extends HBox{
 	
 	ContextMenu cm = new ContextMenu();
 	
+	
 	PDF pdf;
 	
 	public MyListItem(String labelText, PDF pdf){
@@ -37,7 +39,10 @@ public class MyListItem extends HBox{
 	}
 	
 	public void updateLabel(String text){
-		label.setText(text);
+		 Platform.runLater(() -> {
+	            label.setText(text);
+	        });
+
 	}
 	
 	private void setup(){

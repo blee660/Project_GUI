@@ -21,7 +21,6 @@ public class TemplateThread extends Service<Void> {
 	public void addPDF(PDF pdf) {
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
-			System.out.println("here");
 		}
 		
 		if (!this.isRunning()) {
