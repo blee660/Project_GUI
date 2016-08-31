@@ -68,9 +68,9 @@ public class MainController implements Initializable{
 			for(String x: pdf.getMetadata().getAuthors()){
 				if (count != 0){
 					sb.append(", ");
-					count++;
 				}
 				sb.append(x);
+				count++;
 			}
 			
 			setLabels(authors, sb.toString());
@@ -96,9 +96,9 @@ public class MainController implements Initializable{
 			for(String x: pdf.getKeyWords()){
 				if(count!=0){
 					sb.append(", ");
-					count++;
 				}
 				sb.append(x);
+				count++;
 			}
 			
 			setLabels(keywords, sb.toString());
