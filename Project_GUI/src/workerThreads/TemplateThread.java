@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import pdfClasses.PDF;
-import sun.reflect.Reflection;
 
 public class TemplateThread extends Service<Void> {
 

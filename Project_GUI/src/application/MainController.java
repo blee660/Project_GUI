@@ -3,6 +3,7 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
@@ -15,7 +16,7 @@ public class MainController implements Initializable{
 		
 	
 	public MainController(){
-		
+		Main.setMainController(this);
 	}
 
 	@Override
@@ -23,7 +24,8 @@ public class MainController implements Initializable{
 	}
 	
 	public void addPane(Tab tab){
-		
-		tabPane.getTabs().add(tab);
+		Platform.runLater(() -> {
+			tabPane.getTabs().add(tab);
+        });
 	}
 }
