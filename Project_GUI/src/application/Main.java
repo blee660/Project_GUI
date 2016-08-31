@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	public static File homeDir;
+	private static MainController mc;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -44,5 +45,13 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static void setMainController(MainController mc1){
+		mc = mc1;
+	}
+	
+	public static MainController getMainController(){
+		return mc;
 	}
 }

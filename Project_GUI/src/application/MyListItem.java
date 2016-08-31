@@ -51,6 +51,7 @@ public class MyListItem extends HBox{
 		MenuItem item2 = new MenuItem("View as PDF");
 		MenuItem item3 = new MenuItem("Show metadata");
 		MenuItem item4 = new MenuItem("Remove from library");
+		
 		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item3, new SeparatorMenuItem(), item4);
 		
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
@@ -59,6 +60,20 @@ public class MyListItem extends HBox{
 			public void handle(MouseEvent arg) {
 				if(arg.getButton() == MouseButton.PRIMARY){
 					cm.show(button, arg.getScreenX(),arg.getScreenY());
+				}
+			}
+		});
+		
+		
+		this.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent e) {
+				if(e.getButton().equals(MouseButton.PRIMARY)){
+					if(e.getClickCount() == 2 ){
+						System.out.println("here");
+						Main.getMainController().addPane(pdf.getTab());
+					}
 				}
 			}
 		});

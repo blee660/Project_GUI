@@ -2,17 +2,23 @@ package pdfClasses;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import application.MetadataTab;
 import application.MyListItem;
+import javafx.scene.control.Tab;
 
 public class PDF {
 
+	private MyListItem listItem;
+	private MetadataTab MT = new MetadataTab(this);
+	
 	private String fileLocation;
 	private String fileName;
 	private File file = null;
-	private MyListItem listItem;
+	private ArrayList<String> keywords = new ArrayList<String>();
 	
 	private MetadataStorer mds = new MetadataStorer();
 
@@ -73,5 +79,17 @@ public class PDF {
 	}
 	public String getFileName(){
 		return this.fileName;
+	}
+	
+	public void addKeyWord(String keyword){
+		this.keywords.add(keyword);
+	}
+	
+	public ArrayList<String> getKeyWords(){
+		return this.keywords;
+	}
+	
+	public Tab getTab(){
+		return this.MT;
 	}
 }

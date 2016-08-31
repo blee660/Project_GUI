@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.VBox;
 import pdfClasses.PDF;
 
 public class MetadataTab extends Tab{
@@ -28,9 +29,14 @@ public class MetadataTab extends Tab{
 	private Label abstractxContent = new Label(x);
 	private ArrayList<Label> keywordContent = new ArrayList<Label>();	
 	
+	private VBox vbox= new VBox();
+	
 	public MetadataTab(PDF pdf){
 		super();
 		this.pdf = pdf;
+		
+		this.setContent(vbox);
+		vbox.getChildren().add(new Label("LOOOOOOOOOOOOOOOOL"));
 	}
 	
 	public void updateFields(){
