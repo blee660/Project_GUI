@@ -2,6 +2,7 @@ package pdfClasses;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,6 +14,7 @@ public class PDF {
 	private String fileName;
 	private File file = null;
 	private MyListItem listItem;
+	private ArrayList<String> keywords = new ArrayList<String>();
 	
 	private MetadataStorer mds = new MetadataStorer();
 
@@ -73,5 +75,13 @@ public class PDF {
 	}
 	public String getFileName(){
 		return this.fileName;
+	}
+	
+	public void addKeyWord(String keyword){
+		this.keywords.add(keyword);
+	}
+	
+	public ArrayList<String> getKeyWords(){
+		return this.keywords;
 	}
 }
