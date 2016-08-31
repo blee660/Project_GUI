@@ -2,3 +2,6 @@ RemoteSystemsTempFiles/
 .metadata/
 .DS_Store
 .recommenders/
+
+Project_GUI/.classpath
+Project_GUI/.project
