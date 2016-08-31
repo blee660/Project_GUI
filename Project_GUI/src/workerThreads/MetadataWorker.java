@@ -55,7 +55,4 @@ public class MetadataWorker extends TemplateThread{
 		outputFile.mkdir();
 	}
 	
-	@Override
-	protected void populateReliant(){}
-	
 }

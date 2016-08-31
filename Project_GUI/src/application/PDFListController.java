@@ -11,7 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.FileChooser;
 import pdfClasses.Library;
 import pdfClasses.PDF;
-import workerThreads.*;
 
 public class PDFListController {
 	
@@ -54,14 +53,13 @@ public class PDFListController {
 	//ListView Methods
 	
 	public void addItem(PDF pdf){
-		System.out.println("here");
 		String title = "Unknown";
 		if(pdf.getMetadata().getTitle() != null && !pdf.getMetadata().getTitle().equals("")){
 			title = pdf.getMetadata().getTitle();
 		}
 		MyListItem mli = new MyListItem(title, pdf);
 		currentItems.add(mli);
-		
 		listView.getItems().add(mli);
+		pdf.setListItem(mli);
 	}
 }

@@ -23,8 +23,6 @@ public class PDF {
 			this.fileLocation = file.getAbsolutePath();
 			addFileName();
 		}
-		
-		
 	}
 	
 	public PDF(File file){
@@ -44,7 +42,7 @@ public class PDF {
 			e.printStackTrace();
 		}
 		
-		this.listItem.updateLabel(this.mds.getTitle());
+		updateListItem();
 	}
 	
 	public String getFileLocation(){

@@ -12,7 +12,6 @@ public class TemplateThread extends Service<Void> {
 
 	public TemplateThread() {
 		this.start();
-		populateReliant();
 	}
 
 	private List<PDF> pdfs = Collections.synchronizedList(new ArrayList<PDF>());
@@ -21,7 +20,6 @@ public class TemplateThread extends Service<Void> {
 	public void addPDF(PDF pdf) {
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
-			System.out.println("here");
 		}
 		
 		if (!this.isRunning()) {
@@ -59,16 +57,16 @@ public class TemplateThread extends Service<Void> {
 		};
 	}
 
+	public void registerReliant(TemplateThread tt){
+		reliantTasks.add(tt);
+	}
+	
 	public void taskLogic(PDF pdf) {
 		// IMPLEMENT LOGIC HERE
 	}
 
 	public void preExecutionWork() {
 		// IMPLEMENT ANY WORK REQUIRED BEFORE TASKLOGIC HERE
-	}
-
-	protected void populateReliant() {
-		// Add all tasks which rely on this one here
 	}
 
 	private void addToReliant(PDF pdf) {
