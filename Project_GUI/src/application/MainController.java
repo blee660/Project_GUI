@@ -43,11 +43,12 @@ public class MainController implements Initializable{
 	
 	public MainController(){
 		Main.registerMC(this);
-		
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		abstractBox.setMaxWidth(abstractBox.getPrefWidth());
+		abstractx.setWrapText(true);
 	}
 	
 	public void setCurrent(PDF pdf){
@@ -106,7 +107,7 @@ public class MainController implements Initializable{
 		}
 		
 		if(pdf.getMetadata().getAbstractx()!= null){
-			setLabels(abstractx, pdf.getMetadata().getAbstractx());
+			setLabels(abstractx, pdf.getMetadata().getAbstractx().replaceAll("\\r?\\n", " ").replaceAll("  ", " "));
 		}
 		else{
 			setLabels(abstractx, "Unkown");
