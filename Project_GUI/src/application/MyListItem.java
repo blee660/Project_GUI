@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,8 @@ public class MyListItem extends HBox{
 	public MyListItem(String labelText, PDF pdf){
 		super();
 
+		label.setTextOverrun(OverrunStyle.CLIP);
+		
 		this.pdf = pdf;
 		this.label.setText(labelText);
 		
