@@ -43,19 +43,19 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="52.0" prefWidth="464.0">
+            <HBox prefHeight="31.0" prefWidth="434.0">
                <children>
-                  <Label text="Title:">
+                  <Label maxWidth="51.0" minWidth="51.0" prefWidth="51.0" text="Title:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="title" text="Unknown">
+                  <Label fx:id="title" text="Please Select a File">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <padding>
-                        <Insets left="30.0" />
+                        <Insets left="15.0" />
                      </padding>
                   </Label>
                </children>
@@ -65,23 +65,26 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="464.0">
                <children>
-                  <Label text="Path:" textFill="#5a5a5a" />
-                  <Label fx:id="path" text="Unknown" textFill="#5a5a5a">
+                  <Label minWidth="-Infinity" prefWidth="27.0" text="Path:" textFill="#5a5a5a" />
+                  <Label fx:id="path" text="NA" textFill="#5a5a5a">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
                   </Label>
                </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
             </HBox>
             <Separator prefWidth="200.0" />
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="449.0">
                <children>
-                  <Label text="Authors:">
+                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Authors:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="authors" text="Unknown">
+                  <Label fx:id="authors" text="NA">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -96,12 +99,12 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="449.0">
                <children>
-                  <Label text="Degree:">
+                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Degree:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="degree" text="Unknown">
+                  <Label fx:id="degree" text="NA">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -113,12 +116,12 @@
             </HBox>
             <HBox layoutX="25.0" layoutY="136.0" prefHeight="8.0" prefWidth="449.0">
                <children>
-                  <Label text="Supervisors:">
+                  <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="95.0" text="Supervisors:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="supervisors" text="Unknown">
+                  <Label fx:id="supervisors" text="NA">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -131,12 +134,12 @@
             <Separator prefWidth="200.0" />
             <HBox layoutX="25.0" layoutY="108.0" prefHeight="0.0" prefWidth="449.0">
                <children>
-                  <Label text="Keywords:">
+                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Keywords:">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="keywords" text="Unknown">
+                  <Label fx:id="keywords" text="NA">
                      <font>
                         <Font size="18.0" />
                      </font>
