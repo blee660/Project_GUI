@@ -14,13 +14,8 @@ public class Main extends Application {
 	
 	public static File homeDir;
 	
-	private ArrayList<TemplateThread> workerList = new ArrayList<TemplateThread>();
-	
 	@Override
 	public void start(Stage primaryStage) {
-		
-		registerWorkers();
-		initialWorkerThreadStart();
 		
 		
 		String fileName = System.getProperty("user.home") + File.separator + "GUI700Home";
@@ -44,16 +39,6 @@ public class Main extends Application {
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public void registerWorkers(){
-		
-	}
-	
-	public void initialWorkerThreadStart(){
-		for(TemplateThread tt : workerList){
-			tt.start();
 		}
 	}
 	

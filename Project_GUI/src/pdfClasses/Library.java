@@ -28,15 +28,18 @@ public class Library {
 	}
 	
 	
-	
 	//======================================================================
 	private List<TemplateThread> workerList = new ArrayList<TemplateThread>();
 	private List<TemplateThread> initialWorkers = new ArrayList<TemplateThread>();
 	private void startWorkers(){
 		MetadataWorker mw = new MetadataWorker();
+		ClassificationThread ct = new ClassificationThread();
 		
 		workerList.add(mw);
 		initialWorkers.add(mw);
+		
+		workerList.add(ct);
+		mw.registerReliant(ct);
 	}
 	
 	
