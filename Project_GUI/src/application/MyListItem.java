@@ -2,6 +2,7 @@ package application;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
@@ -13,34 +14,51 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import pdfClasses.PDF;
 
 public class MyListItem extends HBox{
 	
-	Label label= new Label();
+	
+	Label title= new Label();
+	Label location = new Label();
 	Pane pane = new Pane();
 	Button button = new Button(">");
+	
+	VBox box = new VBox();
 	
 	ContextMenu cm = new ContextMenu();
 	
 	
 	PDF pdf;
 	
-	public MyListItem(String labelText, PDF pdf){
+	public MyListItem(String titleText, PDF pdf){
 		super();
 
-		label.setTextOverrun(OverrunStyle.ELLIPSIS);
+		title.setTextOverrun(OverrunStyle.ELLIPSIS);
 		
 		this.pdf = pdf;
-		this.label.setText(labelText);
+		this.title.setText(titleText);
+		this.location.setText(pdf.getFileLocation());
+		this.location.setFont(new Font(8));
+		this.location.setTextFill(Color.DARKGRAY);
 		
-		this.getChildren().setAll(label, pane, button);
+		this.box.getChildren().setAll(title,location);
+		
+		this.getChildren().setAll(box, pane, button);
+		button.setAlignment(Pos.CENTER_RIGHT);
+		button.setMinWidth(USE_PREF_SIZE);
+		
+		this.setHgrow(pane, Priority.ALWAYS);
+		
 		setup();
 	}
 	
 	public void updateLabel(String text){
 		 Platform.runLater(() -> {
-	            label.setText(text);
+	            title.setText(text);
 	        });
 
 	}
@@ -63,10 +81,12 @@ public class MyListItem extends HBox{
 		
 		
 		this.setOnMouseClicked(new EventHandler<MouseEvent>(){
-
+			
 			@Override
 			public void handle(MouseEvent arg0) {
-				Main.getMC().setCurrent(pdf);
+				if(arg0.getClickCount() == 2){
+					Main.getMC().setCurrent(pdf);
+				}
 			}
 		});
 	}
