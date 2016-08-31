@@ -22,6 +22,9 @@ public class MetadataWorker extends TemplateThread{
 		}
 		
 		templateCommand = templateCommand + resourcePath + " ";
+		
+		outputFile =  new File(Main.homeDir.getPath() +  File.separator + "meta");
+		outputFile.mkdir();
 	}
 	
 	@Override
@@ -48,11 +51,4 @@ public class MetadataWorker extends TemplateThread{
 		String outputFileName = outputFile.getPath() + File.separator + pdf.getFileName() + ".txt";
 		pdf.populateMeta(new File(outputFileName));
 	}
-	
-	@Override
-	public void preExecutionWork(){
-		outputFile =  new File(Main.homeDir.getPath() +  File.separator + "meta");
-		outputFile.mkdir();
-	}
-	
 }
