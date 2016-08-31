@@ -16,8 +16,8 @@ public class MetadataWorker extends TemplateThread{
 	
 	public MetadataWorker(){
 		super();
-		String resourcePath = getClass().getResource("/resources/PDFExtract.jar").getFile();
-		if(resourcePath.startsWith("/")){
+		String resourcePath = getClass().getResource("/resources/PDFExtract.jar").getPath();
+		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
 			resourcePath = resourcePath.substring(1, resourcePath.length());
 		}
 		
