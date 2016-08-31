@@ -58,6 +58,7 @@ public class PDFListController {
 			title = pdf.getMetadata().getTitle();
 		}
 		MyListItem mli = new MyListItem(title, pdf);
+		mli.setPrefWidth(listView.getMaxWidth());
 		currentItems.add(mli);
 		listView.getItems().add(mli);
 		pdf.setListItem(mli);

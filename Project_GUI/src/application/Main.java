@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	public static File homeDir;
+	
 	private static MainController mc;
 	
 	@Override
@@ -47,11 +48,11 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public static void setMainController(MainController mc1){
+	public static void registerMC(MainController mc1){
 		mc = mc1;
 	}
 	
-	public static MainController getMainController(){
+	public static MainController getMC(){
 		return mc;
 	}
 }
