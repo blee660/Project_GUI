@@ -10,6 +10,7 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import pdfClasses.PDF;
@@ -36,7 +37,7 @@ public class MainController implements Initializable{
 	Label keywords;
 	
 	@FXML
-	Label abstractx;
+	TextArea abstractx;
 	
 	@FXML
 	HBox abstractBox;
@@ -107,10 +108,10 @@ public class MainController implements Initializable{
 		}
 		
 		if(pdf.getMetadata().getAbstractx()!= null){
-			setLabels(abstractx, pdf.getMetadata().getAbstractx().replaceAll("\\r?\\n", " ").replaceAll("  ", " "));
+			abstractx.setText(pdf.getMetadata().getAbstractx().replaceAll("\\r?\\n", " ").replaceAll("  ", " "));
 		}
 		else{
-			setLabels(abstractx, "Unkown");
+			abstractx.setText( "Unkown");
 		}
 	}
 	
