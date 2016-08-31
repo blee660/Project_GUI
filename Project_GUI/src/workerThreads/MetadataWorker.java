@@ -27,7 +27,7 @@ public class MetadataWorker extends TemplateThread{
 	@Override
 	public void taskLogic(PDF pdf) {
 		System.out.println("task");
-		String shellCommand = templateCommand + pdf.getFileLocation() + " " + outputFile.getPath();
+		String shellCommand = templateCommand + pdf.getFileLocation() + " " + outputFile.getAbsolutePath();
 		
 		Process p;
 		
@@ -45,7 +45,7 @@ public class MetadataWorker extends TemplateThread{
 			e.printStackTrace();
 		}
 		
-		String outputFileName = outputFile.getPath() + File.separator + pdf.getFileName() + ".txt";
+		String outputFileName = outputFile.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
 		pdf.populateMeta(new File(outputFileName));
 	}
 	
