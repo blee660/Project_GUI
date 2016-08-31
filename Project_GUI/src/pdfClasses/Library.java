@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.PDFListController;
+import workerThreads.*;
 
 public class Library {
 
@@ -14,7 +15,9 @@ public class Library {
 	 */
 	protected static Library instance;
 	
-	protected Library(){}
+	protected Library(){
+		startWorkers();
+	}
 	
 	public static Library getInstance(){
 		if (instance == null){
@@ -23,6 +26,20 @@ public class Library {
 		
 		return instance;
 	}
+	
+	
+	
+	//======================================================================
+	private List<TemplateThread> workerList = new ArrayList<TemplateThread>();
+	private List<TemplateThread> initialWorkers = new ArrayList<TemplateThread>();
+	private void startWorkers(){
+		MetadataWorker mw = new MetadataWorker();
+		
+		workerList.add(mw);
+		initialWorkers.add(mw);
+	}
+	
+	
 	
 	
 	//======================================================================
@@ -38,6 +55,10 @@ public class Library {
 	public void addPDF(PDF pdf){		
 		PDFList.add(pdf);
 		plc.addItem(pdf);
+		
+		for(TemplateThread tt: initialWorkers){
+			tt.addPDF(pdf);
+		}
 	}
 	
 	public void addPDFs(List<PDF> pdfs){

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.concurrent.Worker;
 import pdfClasses.PDF;
 
 public class TemplateThread extends Service<Void> {
@@ -18,26 +17,22 @@ public class TemplateThread extends Service<Void> {
 
 	private List<PDF> pdfs = Collections.synchronizedList(new ArrayList<PDF>());
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
-	public boolean restart = false;
 	
 	public void addPDF(PDF pdf) {
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
-			if (!this.isRunning()) {
-				restart();
-			}
+			System.out.println("here");
 		}
-	}
-
-	public void restart() {
-		this.reset();
-		this.start();
+		
+		if (!this.isRunning()) {
+			this.restart();
+		}
 	}
 	
 	@Override
 	protected void succeeded(){
 		if(!pdfs.isEmpty()){
-			restart();
+			this.restart();
 		}
 	}
 
@@ -58,7 +53,7 @@ public class TemplateThread extends Service<Void> {
 					addToReliant(temp);
 
 				}
-
+				
 				return null;
 			}
 		};
@@ -72,7 +67,7 @@ public class TemplateThread extends Service<Void> {
 		// IMPLEMENT ANY WORK REQUIRED BEFORE TASKLOGIC HERE
 	}
 
-	private void populateReliant() {
+	protected void populateReliant() {
 		// Add all tasks which rely on this one here
 	}
 
