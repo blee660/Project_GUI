@@ -38,9 +38,9 @@
       </BorderPane>
    </left>
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="80.0" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" tabMinHeight="30.0" tabMinWidth="80.0" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="tabPane" text="Classification"> 
+          <Tab text="Classification"> 
           	<content>
             	<fx:include fx:id="ClassificationTab" source="ClassificationTab.fxml" />
           	</content>
