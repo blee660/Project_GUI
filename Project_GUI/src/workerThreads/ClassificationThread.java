@@ -42,11 +42,13 @@ public class ClassificationThread extends TemplateThread{
 			e.printStackTrace();
 		}
 		
+		System.out.println("before");
+		
 		ExtractKeywords extract = new ExtractKeywords();
 		extract.setOptionsTesting(outputFileName);
 		extract.extractKeyphrases();
-
-
+		
+		System.out.println("after");
 	}
 	
 	public void preExecutionWork(){
