@@ -29,13 +29,12 @@ public class MyListItem extends HBox{
 	public MyListItem(String labelText, PDF pdf){
 		super();
 
-		label.setTextOverrun(OverrunStyle.CLIP);
+		label.setTextOverrun(OverrunStyle.ELLIPSIS);
 		
 		this.pdf = pdf;
 		this.label.setText(labelText);
 		
 		this.getChildren().setAll(label, pane, button);
-		MyListItem.setHgrow(pane, Priority.ALWAYS);
 		setup();
 	}
 	
@@ -49,9 +48,8 @@ public class MyListItem extends HBox{
 	private void setup(){
 		MenuItem item1 = new MenuItem("View as HTML");
 		MenuItem item2 = new MenuItem("View as PDF");
-		MenuItem item3 = new MenuItem("Show metadata");
 		MenuItem item4 = new MenuItem("Remove from library");
-		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item3, new SeparatorMenuItem(), item4);
+		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item4);
 		
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
@@ -60,6 +58,15 @@ public class MyListItem extends HBox{
 				if(arg.getButton() == MouseButton.PRIMARY){
 					cm.show(button, arg.getScreenX(),arg.getScreenY());
 				}
+			}
+		});
+		
+		
+		this.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent arg0) {
+				Main.getMC().setCurrent(pdf);
 			}
 		});
 	}

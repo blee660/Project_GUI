@@ -6,8 +6,8 @@
 	<classpathentry kind="lib" path="com.fasterxml.jackson.annotations.jar"/>
 	<classpathentry kind="lib" path="com.fasterxml.jackson.core.jar"/>
 	<classpathentry kind="lib" path="com.fasterxml.jackson.databind.jar"/>
-	<classpathentry kind="lib" path="/Users/Jenny/Project_GUI/Project_GUI/kea-5.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Jenny/Project_GUI/Project_GUI/commons-io-2.0.jar"/>
-	<classpathentry kind="lib" path="/Users/Jenny/Project_GUI/Project_GUI/weka-stable-3.6.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sophia/Desktop/Chuan/700GUI/Project_GUI/commons-io-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sophia/Desktop/Chuan/700GUI/Project_GUI/kea-5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sophia/Desktop/Chuan/700GUI/Project_GUI/weka-stable-3.6.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
