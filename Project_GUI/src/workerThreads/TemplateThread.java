@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import pdfClasses.PDF;
+import sun.reflect.Reflection;
 
 public class TemplateThread extends Service<Void> {
 
@@ -18,6 +20,7 @@ public class TemplateThread extends Service<Void> {
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
 	
 	public void addPDF(PDF pdf) {
+		
 		synchronized (pdfs) {
 			this.pdfs.add(pdf);
 		}
@@ -29,6 +32,7 @@ public class TemplateThread extends Service<Void> {
 	
 	@Override
 	protected void succeeded(){
+		System.out.println(this.getClass().getName());
 		if(!pdfs.isEmpty()){
 			this.restart();
 		}
@@ -37,15 +41,12 @@ public class TemplateThread extends Service<Void> {
 	@Override
 	protected Task<Void> createTask() {
 		return new Task<Void>() {
-
 			@Override
 			protected Void call() throws Exception {
 				preExecutionWork();
 				while (!pdfs.isEmpty()) {
 					PDF temp;
-					synchronized (pdfs) {
-						temp = pdfs.remove(0);
-					}
+					temp = pdfs.remove(0);
 					taskLogic(temp);
 
 					addToReliant(temp);
@@ -70,9 +71,10 @@ public class TemplateThread extends Service<Void> {
 	}
 
 	private void addToReliant(PDF pdf) {
-		for (TemplateThread tt : reliantTasks) {
-			tt.addPDF(pdf);
-		}
+		Platform.runLater(() -> {
+			for (TemplateThread tt : reliantTasks) {
+				tt.addPDF(pdf);
+			}
+        });
 	}
-
 }
