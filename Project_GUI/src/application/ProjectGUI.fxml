@@ -5,13 +5,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <top>
       <MenuBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <menus>
@@ -41,136 +43,144 @@
       </BorderPane>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="31.0" prefWidth="434.0">
+      <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="wrapper">
                <children>
-                  <Label maxWidth="51.0" minWidth="51.0" prefWidth="51.0" text="Title:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="title" text="Please Select a File">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
+                  <HBox prefHeight="31.0" prefWidth="434.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="69.0" text="Title:" textOverrun="CLIP">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="title" prefHeight="28.0" prefWidth="330.0" text="Please Select a File">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="464.0">
+                     <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="16.0" prefWidth="38.0" text="Path:" textAlignment="RIGHT" textFill="#5a5a5a" textOverrun="CLIP" />
+                        <Label fx:id="path" prefHeight="16.0" prefWidth="350.0" text="NA" textFill="#5a5a5a">
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </Label>
+                     </children>
                      <padding>
                         <Insets left="15.0" />
                      </padding>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="464.0">
-               <children>
-                  <Label minWidth="-Infinity" prefWidth="27.0" text="Path:" textFill="#5a5a5a" />
-                  <Label fx:id="path" text="NA" textFill="#5a5a5a">
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="449.0">
+                     <children>
+                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="105.0" text="Authors:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="authors" prefHeight="23.0" prefWidth="300.0" text="NA">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="449.0">
+                     <children>
+                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="105.0" text="Degree:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="degree" prefHeight="23.0" prefWidth="300.0" text="NA">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="25.0" layoutY="136.0" prefHeight="8.0" prefWidth="449.0">
+                     <children>
+                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="105.0" text="Supervisors:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="supervisors" prefHeight="23.0" prefWidth="300.0" text="NA">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox layoutX="25.0" layoutY="108.0" prefHeight="23.0">
+                     <children>
+                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="105.0" text="Keywords:" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="keywords" prefHeight="23.0" prefWidth="300.0" text="NA" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox fx:id="abstractBox" layoutX="25.0" layoutY="172.0" prefWidth="432.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="105.0" text="Abstract:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="297.0" prefWidth="341.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Text fx:id="abstractx" strokeType="OUTSIDE" strokeWidth="0.0" text="NA" textAlignment="JUSTIFY" wrappingWidth="279.0" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
                <padding>
-                  <Insets left="15.0" />
+                  <Insets left="25.0" right="35.0" top="5.0" />
                </padding>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <HBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="449.0">
-               <children>
-                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Authors:">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="authors" text="NA">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="449.0">
-               <children>
-                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Degree:">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="degree" text="NA">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox layoutX="25.0" layoutY="136.0" prefHeight="8.0" prefWidth="449.0">
-               <children>
-                  <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="95.0" text="Supervisors:">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="supervisors" text="NA">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <HBox layoutX="25.0" layoutY="108.0" prefHeight="0.0" prefWidth="449.0">
-               <children>
-                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Keywords:">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="keywords" text="NA">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0" />
-            <HBox fx:id="abstractBox" layoutX="25.0" layoutY="172.0" prefHeight="0.0" prefWidth="449.0">
-               <children>
-                  <Label maxWidth="95.0" minWidth="95.0" prefWidth="95.0" text="Abstract:">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="abstractx" text="NA" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets left="15.0" right="15.0" />
-         </padding>
-      </VBox>
+            </VBox>
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>

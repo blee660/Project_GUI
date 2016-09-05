@@ -25,7 +25,7 @@ public class MyListItem extends HBox{
 	Label title= new Label();
 	Label location = new Label();
 	Pane pane = new Pane();
-	Button button = new Button(">");
+	Button button = new Button("");
 	
 	VBox box = new VBox();
 	
@@ -69,8 +69,10 @@ public class MyListItem extends HBox{
 		MenuItem item4 = new MenuItem("Remove from library");
 		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item4);
 		
+		button.setId("menu-button");
+		button.getStylesheets().add("application.css");
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-
+		
 			@Override
 			public void handle(MouseEvent arg) {
 				if(arg.getButton() == MouseButton.PRIMARY){

@@ -21,3 +21,32 @@
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
 }
+
+#search-button {
+	-fx-background-image: url("../../resources/search2.png");
+	-fx-background-size: 16px 16px;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: center;
+}
+#add-button {
+	-fx-background-image: url("../../resources/add.png");
+	-fx-background-size: 16px 16px;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: center;
+}
+#remove-button {
+	-fx-background-image: url("../../resources/remove.png");
+	-fx-background-size: 16px 16px;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: center;
+}
+#menu-button {
+	-fx-background-image: url("../../resources/menu.png");
+	-fx-background-size: 16px 16px;
+  	-fx-background-repeat: no-repeat;
+  	-fx-background-position: center;
+  	-fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
