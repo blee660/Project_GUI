@@ -44,6 +44,9 @@ public class HTMLConWorker extends TemplateThread{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
+		pdf.setHTMLFile(new File(outputFileName));
 	}
 	
 	

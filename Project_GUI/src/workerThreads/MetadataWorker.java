@@ -45,7 +45,7 @@ public class MetadataWorker extends TemplateThread{
 			e.printStackTrace();
 		}
 		
-		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
 		pdf.populateMeta(new File(outputFileName));
 	}
 	
