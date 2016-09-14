@@ -34,12 +34,16 @@ public class Library {
 	private void startWorkers(){
 		MetadataWorker mw = new MetadataWorker();
 		ClassificationThread ct = new ClassificationThread();
+		HTMLConWorker hcw = new HTMLConWorker();
 		
 		workerList.add(mw);
 		initialWorkers.add(mw);
 		
 		workerList.add(ct);
 		mw.registerReliant(ct);
+		
+		workerList.add(hcw);
+		initialWorkers.add(hcw);
 	}
 	
 	
