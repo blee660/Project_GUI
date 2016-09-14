@@ -41,6 +41,8 @@ public class HTMLConWorker extends TemplateThread{
 				System.out.println(line);
 			}
 			
+			p.destroy();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,7 @@
 package application;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -64,11 +65,7 @@ public class MyListItem extends HBox{
 	}
 	
 	private void setup(){
-		MenuItem item1 = new MenuItem("View as HTML");
-		MenuItem item2 = new MenuItem("View as PDF");
-		MenuItem item4 = new MenuItem("Remove from library");
-		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item4);
-		
+		setupContext();
 		button.setId("menu-button");
 		button.getStylesheets().add("application.css");
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
@@ -91,5 +88,23 @@ public class MyListItem extends HBox{
 				}
 			}
 		});
+	}
+	
+	private void setupContext(){
+		MenuItem item1 = new MenuItem("View as HTML");
+		MenuItem item2 = new MenuItem("View as PDF");
+		MenuItem item4 = new MenuItem("Remove from library");
+		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item4);
+		
+		item1.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				System.out.println("hi");
+			}
+			
+		});
+		
 	}
 }
