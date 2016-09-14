@@ -41,11 +41,13 @@ public class HTMLConWorker extends TemplateThread{
 				System.out.println(line);
 			}
 			
+			p.destroy();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".html";
 		pdf.setHTMLFile(new File(outputFileName));
 	}
 	
