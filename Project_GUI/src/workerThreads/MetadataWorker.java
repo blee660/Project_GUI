@@ -12,7 +12,7 @@ import pdfClasses.PDF;
 public class MetadataWorker extends TemplateThread{
 
 	private String templateCommand = "java -jar ";
-	private File outputFile;
+	private File outputFolder;
 	
 	public MetadataWorker(){
 		super();
@@ -27,7 +27,7 @@ public class MetadataWorker extends TemplateThread{
 	@Override
 	public void taskLogic(PDF pdf) {
 		System.out.println("task");
-		String shellCommand = templateCommand + pdf.getFileLocation() + " " + outputFile.getAbsolutePath();
+		String shellCommand = templateCommand + pdf.getFileLocation() + " " + outputFolder.getAbsolutePath();
 		
 		Process p;
 		
@@ -45,14 +45,14 @@ public class MetadataWorker extends TemplateThread{
 			e.printStackTrace();
 		}
 		
-		String outputFileName = outputFile.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
 		pdf.populateMeta(new File(outputFileName));
 	}
 	
 	@Override
 	public void preExecutionWork(){
-		outputFile =  new File(Main.homeDir.getPath() +  File.separator + "meta");
-		outputFile.mkdir();
+		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "meta");
+		outputFolder.mkdir();
 	}
 	
 }
