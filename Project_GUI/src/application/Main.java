@@ -21,7 +21,7 @@ public class Main extends Application {
 		
 		
 		String fileName = System.getProperty("user.home") + File.separator + "GUI700Home";
-		String timeStamp = new SimpleDateFormat("dd.MMM.yyyy hh.mm").format(new java.util.Date());
+		String timeStamp = new SimpleDateFormat("dd.MMM.yyyy_hh.mm").format(new java.util.Date());
 		
 		parentDir = new File(fileName);
 		sessionDir = new File(fileName + "/" + timeStamp);
@@ -29,8 +29,7 @@ public class Main extends Application {
 		if(!parentDir.exists()){
 			parentDir.mkdir();
 		}
-		sessionDir.mkdir();
-			
+		sessionDir.mkdir();		
 		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));
