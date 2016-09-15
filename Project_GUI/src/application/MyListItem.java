@@ -100,7 +100,7 @@ public class MyListItem extends HBox {
 	private void setupContext() {
 		MenuItem item1 = new MenuItem("View as HTML");
 		MenuItem item2 = new MenuItem("View as PDF");
-		cm.getItems().addAll(item1, item2, new SeparatorMenuItem());
+		cm.getItems().addAll(item1, new SeparatorMenuItem(), item2);
 
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
