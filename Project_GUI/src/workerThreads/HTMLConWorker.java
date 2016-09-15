@@ -49,12 +49,20 @@ public class HTMLConWorker extends TemplateThread{
 		
 		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".html";
 		pdf.setHTMLFile(new File(outputFileName));
-	}
-	
+	}	
 	
 	@Override
 	public void preExecutionWork(){
 		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "html");
 		outputFolder.mkdir();
+	}
+	
+	@Override
+	public void removeResult(PDF pdf){
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".html";
+		File f = new File(outputFileName);
+		if(f.exists()){
+			f.delete();
+		}
 	}
 }

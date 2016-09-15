@@ -55,7 +55,7 @@ public class MetadataWorker extends TemplateThread{
 	
 	@Override
 	public void removeResult(PDF pdf){
-		String outputFileName = outputFile.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
 		File f = new File(outputFileName);
 		if(f.exists()){
 			f.delete();

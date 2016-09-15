@@ -24,7 +24,7 @@ import pdfClasses.PDF;
  * */
 public class ClassificationThread extends TemplateThread{
 	
-	private File outputFile;
+	private File outputFolder;
 	private String templateCommand = "java -jar ";
 	
 	public ClassificationThread(){
@@ -55,7 +55,7 @@ public class ClassificationThread extends TemplateThread{
 	public void taskLogic(PDF pdf) {
 		String abstractText = pdf.getMetadata().getAbstractx();
 
-		String outputFileName = outputFile.getPath() + File.separator + pdf.getFileName() + ".txt";
+		String outputFileName = outputFolder.getPath() + File.separator + pdf.getFileName() + ".txt";
 		
 		try {
 
@@ -91,8 +91,16 @@ public class ClassificationThread extends TemplateThread{
 	}
 	
 	public void preExecutionWork(){
-		outputFile =  new File(Main.homeDir.getPath() +  File.separator + "keywords");
-		outputFile.mkdir();
+		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "keywords");
+		outputFolder.mkdir();
+	}
+	
+	public void removeResult(PDF pdf){
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
+		File f = new File(outputFileName);
+		if(f.exists()){
+			f.delete();
+		}
 	}
 	
 }
