@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Platform;
@@ -27,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pdfClasses.Library;
 import pdfClasses.PDF;
 
 public class MyListItem extends HBox {
@@ -35,7 +37,6 @@ public class MyListItem extends HBox {
 	Label location = new Label();
 	Pane pane = new Pane();
 	Button button = new Button("");
-
 	VBox box = new VBox();
 
 	ContextMenu cm = new ContextMenu();
@@ -99,41 +100,60 @@ public class MyListItem extends HBox {
 	private void setupContext() {
 		MenuItem item1 = new MenuItem("View as HTML");
 		MenuItem item2 = new MenuItem("View as PDF");
-		MenuItem item4 = new MenuItem("Remove from library");
-		cm.getItems().addAll(item1, item2, new SeparatorMenuItem(), item4);
+		cm.getItems().addAll(item1, item2, new SeparatorMenuItem());
 
 		item1.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
 				if (!Desktop.isDesktopSupported()) {
 					showDialog("Sorry, this is not supported on this computer");
 					return;
 				}
-
 				if (pdf.getHTMLFile() == null) {
-					showDialog("Sorry, HTML file not ready yet!");
+					showDialog("Sorry, HTML file is not ready yet! \nPlease wait a few seconds and try again \n");
+					return;
+				}
+				try {
+					Desktop.getDesktop().browse(pdf.getHTMLFile().toURI());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		item2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (!Desktop.isDesktopSupported()) {
+					showDialog("Sorry, this is not supported on this computer");
 					return;
 				}
 				
 				try {
-					Desktop.getDesktop().browse(pdf.getHTMLFile().toURI());
+					Desktop.getDesktop().open(new File(pdf.getFileLocation()));
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
 			}
-
 		});
 
 	}
 
 	private void showDialog(String text) {
+		Button closeButton = new Button("OK");
+
 		Stage dialogStage = new Stage();
 		dialogStage.initModality(Modality.WINDOW_MODAL);
-		dialogStage.setScene(new Scene(VBoxBuilder.create().children(new Text(text), new Button("Ok."))
+		dialogStage.setScene(new Scene(VBoxBuilder.create().children(new Text(text), closeButton)
 				.alignment(Pos.CENTER).padding(new Insets(5)).build()));
 		dialogStage.show();
+		
+
+		closeButton.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				dialogStage.close();		
+			}
+		});
 	}
+	
 }
