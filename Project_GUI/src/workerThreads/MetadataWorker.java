@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-
 import application.Main;
 import pdfClasses.PDF;
 
@@ -55,4 +53,12 @@ public class MetadataWorker extends TemplateThread{
 		outputFile.mkdir();
 	}
 	
+	@Override
+	public void removeResult(PDF pdf){
+		String outputFileName = outputFile.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt";
+		File f = new File(outputFileName);
+		if(f.exists()){
+			f.delete();
+		}
+	}
 }

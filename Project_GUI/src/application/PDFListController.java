@@ -5,9 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import pdfClasses.Library;
 import pdfClasses.PDF;
@@ -17,12 +21,16 @@ public class PDFListController {
 	private FileChooser fc = new FileChooser();
 
 	@FXML
+	Button deleteButton;
+	
+	@FXML
 	ListView<MyListItem> listView = new ListView<MyListItem>();
 	List<MyListItem> currentItems = new ArrayList<MyListItem>();
 	
 	public PDFListController() {
 		setFilters();
 		Library.getInstance().registerDisplay(this);
+		setup();
 	}
 
 	//=============================================================================================================================
@@ -38,8 +46,18 @@ public class PDFListController {
 	}
 
 	//=============================================================================================================================
-	public void removePDF(ActionEvent event) {
-		System.out.println("removed");
+	public void setup(){
+		deleteButton.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				List<MyListItem> selected = listView.getSelectionModel().getSelectedItems();
+				
+				for(MyListItem mli : selected){
+					Library.getInstance().removePDF(mli.pdf);
+				}
+			}
+		});
 	}
 
 	//=============================================================================================================================

@@ -11,6 +11,17 @@ import java.io.OutputStreamWriter;
 import application.Main;
 import pdfClasses.PDF;
 
+/**
+ * 
+ * Worker thread class for extracting keyphrases from pdf documents.
+ * The PDFClassify jar file is run on a new process and the
+ * output (extracted keyphrases) is stored into the keyword field 
+ * of the document, and also into an output file in the specified
+ * directory.
+ * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ * 
+ * */
 public class ClassificationThread extends TemplateThread{
 	
 	private File outputFile;
@@ -19,16 +30,28 @@ public class ClassificationThread extends TemplateThread{
 	public ClassificationThread(){
 		super();
 		
+		// Get path of jar file to be executed
 		String resourcePath = getClass().getResource("/resources/PDFClassify.jar").getPath();
 		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
 			resourcePath = resourcePath.substring(1, resourcePath.length());
 		}
 		
+		// Template command specifying the jar file to be executed
 		templateCommand = templateCommand + resourcePath + " ";
 		
 	}
 	
-	@Override
+	/**
+	 * 
+	 * Main task logic of executing keyphrase extraction jar file.
+	 * Keyphrases extracted from a text file containing the pdf document
+	 * abstract content. Extracted keyphrases stored into an the keyword 
+	 * list of the pdf.
+	 * 
+	 * @param pdf file
+	 * 
+	 * 
+	 * */
 	public void taskLogic(PDF pdf) {
 		String abstractText = pdf.getMetadata().getAbstractx();
 

@@ -8,8 +8,13 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import pdfClasses.PDF;
-import sun.reflect.Reflection;
 
+/**
+ * 
+ * Template class to be extended by all worker threads
+ * 
+ * 
+ * */
 public class TemplateThread extends Service<Void> {
 
 	public TemplateThread() {
@@ -18,6 +23,7 @@ public class TemplateThread extends Service<Void> {
 
 	private List<PDF> pdfs = Collections.synchronizedList(new ArrayList<PDF>());
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
+	private List<PDF> removeList = new ArrayList<PDF>();
 	
 	public void addPDF(PDF pdf) {
 		
@@ -28,6 +34,15 @@ public class TemplateThread extends Service<Void> {
 		if (!this.isRunning()) {
 			this.restart();
 		}
+	}
+	
+	public void removePDF(PDF pdf){
+		if(pdfs.contains(pdf)){
+			removeList.add(pdf);
+		}else{
+			removeResult(pdf);
+		}
+
 	}
 	
 	@Override
@@ -46,13 +61,18 @@ public class TemplateThread extends Service<Void> {
 				preExecutionWork();
 				while (!pdfs.isEmpty()) {
 					PDF temp;
-					temp = pdfs.remove(0);
+					temp = pdfs.get(0);
+
 					taskLogic(temp);
 
 					addToReliant(temp);
-
+					
+					if(removeList.contains(temp)){
+						removeResult(temp);
+					}
+					
+					pdfs.remove(temp);
 				}
-				
 				return null;
 			}
 		};
@@ -62,12 +82,18 @@ public class TemplateThread extends Service<Void> {
 		reliantTasks.add(tt);
 	}
 	
+	// Main task logic
 	public void taskLogic(PDF pdf) {
 		// IMPLEMENT LOGIC HERE
 	}
 
+	// Implementation of any work required before execution of taskLogic
 	public void preExecutionWork() {
-		// IMPLEMENT ANY WORK REQUIRED BEFORE TASKLOGIC HERE
+		// IMPLEMENT PRE EXECUTION WORK HERE
+	}
+	
+	public void removeResult(PDF pdf){
+		
 	}
 
 	private void addToReliant(PDF pdf) {

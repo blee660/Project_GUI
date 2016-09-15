@@ -1,12 +1,9 @@
 package application;
 	
 import java.io.File;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import workerThreads.TemplateThread;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -33,7 +30,6 @@ public class Main extends Application {
 		
 		
 		try {
-//			BorderPane root = new BorderPane();
 			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));
 			Scene scene = new Scene(root,900,700);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());

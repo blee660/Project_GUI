@@ -80,6 +80,9 @@ public class Library {
 	public void removePDF(PDF pdf){
 		if(this.contains(pdf)){
 			PDFList.remove(pdf);
+			for(TemplateThread tt: workerList){
+				tt.removePDF(pdf);
+			}
 		}
 	}
 	
