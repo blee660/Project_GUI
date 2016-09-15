@@ -53,7 +53,7 @@ public class HTMLConWorker extends TemplateThread{
 	
 	@Override
 	public void preExecutionWork(){
-		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "html");
+		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "html");
 		outputFolder.mkdir();
 	}
 	

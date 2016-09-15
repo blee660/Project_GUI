@@ -1,6 +1,8 @@
 package application;
 	
 import java.io.File;
+import java.text.SimpleDateFormat;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -9,7 +11,8 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	public static File homeDir;
+	public static File sessionDir;
+	public static File parentDir;
 	
 	private static MainController mc;
 	
@@ -18,16 +21,16 @@ public class Main extends Application {
 		
 		
 		String fileName = System.getProperty("user.home") + File.separator + "GUI700Home";
-		int i = 1;
+		String timeStamp = new SimpleDateFormat("dd.MMM.yyyy hh.mm").format(new java.util.Date());
 		
-		homeDir = new File(fileName);
-		while(homeDir.exists()){
-			homeDir = new File(fileName + "(" + i + ")");
-			i++;
+		parentDir = new File(fileName);
+		sessionDir = new File(fileName + "/" + timeStamp);
+
+		if(!parentDir.exists()){
+			parentDir.mkdir();
 		}
-		
-		homeDir.mkdir();
-		
+		sessionDir.mkdir();
+			
 		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));

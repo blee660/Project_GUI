@@ -49,7 +49,7 @@ public class MetadataWorker extends TemplateThread{
 	
 	@Override
 	public void preExecutionWork(){
-		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "meta");
+		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "meta");
 		outputFolder.mkdir();
 	}
 	

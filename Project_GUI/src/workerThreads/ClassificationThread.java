@@ -91,7 +91,7 @@ public class ClassificationThread extends TemplateThread{
 	}
 	
 	public void preExecutionWork(){
-		outputFolder =  new File(Main.homeDir.getPath() +  File.separator + "keywords");
+		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "keywords");
 		outputFolder.mkdir();
 	}
 	
