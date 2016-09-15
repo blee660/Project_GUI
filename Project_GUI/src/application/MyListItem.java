@@ -147,11 +147,11 @@ public class MyListItem extends HBox {
 					return;
 				}
 				if (pdf.getHTMLFile() == null) {
-					showDialog("Sorry, HTML file is not ready yet! \nPlease wait a few seconds and try again \n");
+					showDialog("Sorry, XML file is not ready yet! \nPlease wait a few seconds and try again \n");
 					return;
 				}
 				try {
-					Desktop.getDesktop().browse(pdf.getHTMLFile().toURI());
+					Desktop.getDesktop().browse(pdf.getBiblioFile().toURI());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
