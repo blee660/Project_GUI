@@ -100,7 +100,8 @@ public class MyListItem extends HBox {
 	private void setupContext() {
 		MenuItem item1 = new MenuItem("View as HTML");
 		MenuItem item2 = new MenuItem("View as PDF");
-		cm.getItems().addAll(item1, new SeparatorMenuItem(), item2);
+		MenuItem item3 = new MenuItem("View Bibliography");
+		cm.getItems().addAll(item1, new SeparatorMenuItem(), item2, new SeparatorMenuItem(), item3);
 
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -137,6 +138,27 @@ public class MyListItem extends HBox {
 			}
 		});
 
+		item3.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				if (!Desktop.isDesktopSupported()) {
+					showDialog("Sorry, this is not supported on this computer");
+					return;
+				}
+				if (pdf.getHTMLFile() == null) {
+					showDialog("Sorry, HTML file is not ready yet! \nPlease wait a few seconds and try again \n");
+					return;
+				}
+				try {
+					Desktop.getDesktop().browse(pdf.getHTMLFile().toURI());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+		});
+		
 	}
 
 	private void showDialog(String text) {

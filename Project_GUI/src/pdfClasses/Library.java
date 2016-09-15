@@ -35,6 +35,8 @@ public class Library {
 		MetadataWorker mw = new MetadataWorker();
 		ClassificationThread ct = new ClassificationThread();
 		HTMLConWorker hcw = new HTMLConWorker();
+		BibliographyWorker bw = new BibliographyWorker();
+		
 		
 		workerList.add(mw);
 		initialWorkers.add(mw);
@@ -44,6 +46,9 @@ public class Library {
 		
 		workerList.add(hcw);
 		initialWorkers.add(hcw);
+		
+		workerList.add(bw);
+		initialWorkers.add(bw);
 	}
 	
 	
