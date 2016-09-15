@@ -16,6 +16,7 @@ public class PDF {
 	private MyListItem listItem;
 	private ArrayList<String> keywords = new ArrayList<String>();
 	private File HTMLfile = null;
+	private File BiblioXML = null;
 	
 	private MetadataStorer mds = new MetadataStorer();
 
@@ -54,6 +55,14 @@ public class PDF {
 	
 	public void setHTMLFile(File html){
 		this.HTMLfile = html;
+	}
+	
+	public File getBiblioFile(){
+		return this.BiblioXML;
+	}
+	
+	public void setBiblioFile(File xml){
+		this.BiblioXML = xml;
 	}
 	
 	public String getFileLocation(){

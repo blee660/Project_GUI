@@ -14,7 +14,7 @@ public class BibliographyWorker extends TemplateThread{
 	
 	public BibliographyWorker(){
 		super();
-		String resourcePath = getClass().getResource("/resources/BibliographyExtract.jar").getPath();
+		String resourcePath = getClass().getResource("/resources/BiblioExtract.jar").getPath();
 		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
 			resourcePath = resourcePath.substring(1, resourcePath.length());
 		}
@@ -43,8 +43,8 @@ public class BibliographyWorker extends TemplateThread{
 			e.printStackTrace();
 		}
 		
-		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
-		pdf.populateMeta(new File(outputFileName));
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".xml";
+		pdf.setBiblioFile(new File(outputFileName));
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class BibliographyWorker extends TemplateThread{
 	
 	@Override
 	public void removeResult(PDF pdf){
-		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".json";
+		String outputFileName = outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".xml";
 		File f = new File(outputFileName);
 		if(f.exists()){
 			f.delete();
