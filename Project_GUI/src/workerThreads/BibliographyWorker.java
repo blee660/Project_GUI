@@ -18,7 +18,7 @@ public class BibliographyWorker extends TemplateThread{
 		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
 			resourcePath = resourcePath.substring(1, resourcePath.length());
 		}
-		
+			
 		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
