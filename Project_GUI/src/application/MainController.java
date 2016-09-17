@@ -13,6 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pdfClasses.PDF;
 
+/**
+ * 
+ * Main Controller class that 
+ * 
+ * */
 public class MainController implements Initializable {
 
 	@FXML

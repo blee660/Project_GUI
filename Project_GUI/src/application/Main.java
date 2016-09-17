@@ -9,6 +9,12 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * 
+ * Main class for launching GUI application
+ * Creates a directory, per user session, to store the output files of each tool execution 
+ * 
+ * */
 public class Main extends Application {
 	
 	public static File sessionDir;
@@ -19,10 +25,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		
-		
+		// Parent directory
 		String fileName = System.getProperty("user.home") + File.separator + "GUI700Home";
+		
+		// Session directory
 		String timeStamp = new SimpleDateFormat("dd.MMM.yyyy_hh.mm").format(new java.util.Date());
 		
+		// Create directories
 		parentDir = new File(fileName);
 		sessionDir = new File(fileName + "/" + timeStamp);
 
@@ -31,6 +40,7 @@ public class Main extends Application {
 		}
 		sessionDir.mkdir();		
 		
+		// Primary stage to set application scene
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));
 			Scene scene = new Scene(root,900,700);
@@ -43,13 +53,14 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		// launch application
 		launch(args);
 	}
-	
+
 	public static void registerMC(MainController mc1){
 		mc = mc1;
 	}
-	
+
 	public static MainController getMC(){
 		return mc;
 	}
