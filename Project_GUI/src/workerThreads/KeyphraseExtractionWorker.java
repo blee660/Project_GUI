@@ -25,6 +25,7 @@ import pdfClasses.PDF;
 public class KeyphraseExtractionWorker extends TemplateThread{
 	
 	private File outputFolder;
+	private File abstractFolder;
 	private String templateCommand = "java -jar ";
 	
 	// constructor
@@ -45,7 +46,7 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 	public void taskLogic(PDF pdf) {
 		// get abstract content of PDF
 		String abstractText = pdf.getMetadata().getAbstractx();
-		File abstractFile = new File(outputFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt");
+		File abstractFile = new File(abstractFolder.getAbsolutePath() + File.separator + pdf.getFileName() + ".txt");
 		
 		try {
 			// create a new file to store the abstract content
@@ -60,6 +61,7 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		// full command with template command,  input document, and specified output folder
 		String shellCommand = templateCommand + abstractFile.getAbsolutePath() + " " + outputFolder.getAbsolutePath();
 		
@@ -77,13 +79,12 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 				pdf.addKeyWord(keyword);
 			}
 			
-			abstractFile.delete();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		
+		abstractFile.deleteOnExit();
 
 	}
 	
@@ -91,6 +92,11 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 		// create output folder to store output file before main task is executed
 		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "keywords");
 		outputFolder.mkdir();
+		
+		abstractFolder = new File(Main.sessionDir.getPath() + File.separator + "abstracts");
+		abstractFolder.mkdir();
+		
+		abstractFolder.deleteOnExit();
 	}
 	
 	public void removeResult(PDF pdf){
