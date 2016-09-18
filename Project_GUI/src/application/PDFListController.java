@@ -17,6 +17,7 @@ import pdfClasses.PDF;
  * Controller class for the list of documents
  * allows adding and removal of PDF documents from the library
  * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
  * 
  * */
 public class PDFListController{

@@ -14,6 +14,8 @@ import javafx.scene.Scene;
  * Main class for launching GUI application
  * Creates a directory, per user session, to store the output files of each tool execution 
  * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ * 
  * */
 public class Main extends Application {
 	
