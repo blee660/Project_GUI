@@ -35,7 +35,7 @@ public class Library {
 	private List<TemplateThread> initialWorkers = new ArrayList<TemplateThread>();
 	private void startWorkers(){
 		MetadataWorker mw = new MetadataWorker();
-		ClassificationThread ct = new ClassificationThread();
+		KeyphraseExtractionWorker ct = new KeyphraseExtractionWorker();
 		HTMLConWorker hcw = new HTMLConWorker();
 		BibliographyWorker bw = new BibliographyWorker();
 		
