@@ -13,18 +13,25 @@ import pdfClasses.PDF;
  * 
  * Template class to be extended by all worker threads
  * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
  * 
  * */
 public class TemplateThread extends Service<Void> {
 
+	// constructor
 	public TemplateThread() {
+		// start the service
 		this.start();
 	}
 
+	// list of PDFs to execute
 	private List<PDF> pdfs = Collections.synchronizedList(new ArrayList<PDF>());
+	// list of tasks that are dependent on another
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
+	// list of PDFs to be removed
 	private List<PDF> removeList = new ArrayList<PDF>();
 	
+	// restart service when a PDF is added
 	public void addPDF(PDF pdf) {
 		
 		synchronized (pdfs) {
@@ -36,6 +43,7 @@ public class TemplateThread extends Service<Void> {
 		}
 	}
 	
+	// remove PDFs from list
 	public void removePDF(PDF pdf){
 		if(pdfs.contains(pdf)){
 			removeList.add(pdf);
@@ -45,9 +53,11 @@ public class TemplateThread extends Service<Void> {
 
 	}
 	
+	// print completed class names
 	@Override
 	protected void succeeded(){
 		System.out.println(this.getClass().getName());
+		// restart service if PDF list is not empty
 		if(!pdfs.isEmpty()){
 			this.restart();
 		}
@@ -55,6 +65,7 @@ public class TemplateThread extends Service<Void> {
 
 	@Override
 	protected Task<Void> createTask() {
+		// create a new task on every PDF in the list
 		return new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -62,15 +73,16 @@ public class TemplateThread extends Service<Void> {
 				while (!pdfs.isEmpty()) {
 					PDF temp;
 					temp = pdfs.get(0);
-
+					// execute main task
 					taskLogic(temp);
-
+					// add dependent tasks
 					addToReliant(temp);
 					
 					if(removeList.contains(temp)){
+						// remove result file
 						removeResult(temp);
 					}
-					
+					// remove from PDF list once all tasks have been completed
 					pdfs.remove(temp);
 				}
 				return null;
@@ -78,6 +90,7 @@ public class TemplateThread extends Service<Void> {
 		};
 	}
 
+	// add reliant tasks to list
 	public void registerReliant(TemplateThread tt){
 		reliantTasks.add(tt);
 	}
@@ -96,6 +109,7 @@ public class TemplateThread extends Service<Void> {
 		
 	}
 
+	// run dependent tasks on PDFs after pre execution tasks have completed
 	private void addToReliant(PDF pdf) {
 		Platform.runLater(() -> {
 			for (TemplateThread tt : reliantTasks) {

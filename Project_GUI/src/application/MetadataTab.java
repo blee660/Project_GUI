@@ -10,6 +10,8 @@ import pdfClasses.PDF;
  * Class that updates the main tab window for 
  * displaying the extracted metadata information.
  * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ * 
  * */
 public class MetadataTab extends Tab{
 

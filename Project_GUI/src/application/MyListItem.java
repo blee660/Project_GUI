@@ -37,6 +37,8 @@ import pdfClasses.PDF;
  * the original document, in HTML format, or the extracted
  * bibliography section in a table form.
  *
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ *
  */
 public class MyListItem extends HBox {
 

@@ -17,6 +17,8 @@ import pdfClasses.PDF;
  * 
  * Main Controller class that 
  * 
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ * 
  * */
 public class MainController implements Initializable {
 

@@ -3,8 +3,9 @@ package pdfClasses;
 /**
  * 
  * POJO representation of thesis metadata
- * @author Chuan
  *
+ * @author Chuan-Yu Wu, Bom Yi Lee
+ * 
  */
 public class MetadataStorer {
 	
