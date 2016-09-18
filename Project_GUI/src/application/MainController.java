@@ -15,7 +15,7 @@ import pdfClasses.PDF;
 
 /**
  * 
- * Main Controller class that 
+ * Main Controller class
  * 
  * @author Chuan-Yu Wu, Bom Yi Lee
  * 
