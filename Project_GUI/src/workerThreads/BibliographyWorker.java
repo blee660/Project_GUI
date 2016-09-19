@@ -22,16 +22,11 @@ public class BibliographyWorker extends TemplateThread{
 	
 	// output folder to store extracted bibliography into 
 	private File outputFolder;
+	private File bibJar;
 	
 	// constructor
 	public BibliographyWorker(){
 		super();
-		String resourcePath = getClass().getResource("/resources/BiblioExtract.jar").getPath();
-		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
-			resourcePath = resourcePath.substring(1, resourcePath.length());
-		}
-		// template command for running bibliography extraction	
-		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override
@@ -65,6 +60,16 @@ public class BibliographyWorker extends TemplateThread{
 		// create output folder to store output file before main task is executed
 		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "bibliography");
 		outputFolder.mkdir();
+		
+		bibJar = generateResource("/resources/BiblioExtract.jar", outputFolder.getPath() +File.separator+"BiblioExtract.jar");
+		
+		String resourcePath = bibJar.getPath();
+		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
+			resourcePath = resourcePath.substring(1, resourcePath.length());
+		}
+		// template command for running bibliography extraction	
+		templateCommand = templateCommand + resourcePath + " ";
+
 	}
 	
 	@Override

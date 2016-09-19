@@ -44,9 +44,9 @@ public class Main extends Application {
 		
 		// Primary stage to set application scene
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/application/ProjectGUI.fxml"));
+			Parent root = FXMLLoader.load(Main.class.getResource("/application/ProjectGUI.fxml"));
 			Scene scene = new Scene(root,900,700);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

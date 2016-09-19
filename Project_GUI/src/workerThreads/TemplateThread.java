@@ -1,9 +1,16 @@
 package workerThreads;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import application.Main;
 import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
@@ -30,6 +37,7 @@ public class TemplateThread extends Service<Void> {
 	private ArrayList<TemplateThread> reliantTasks = new ArrayList<TemplateThread>();
 	// list of PDFs to be removed
 	private List<PDF> removeList = new ArrayList<PDF>();
+	private boolean preExDone = false;
 	
 	// restart service when a PDF is added
 	public void addPDF(PDF pdf) {
@@ -69,7 +77,10 @@ public class TemplateThread extends Service<Void> {
 		return new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-				preExecutionWork();
+				if(!preExDone){
+					preExecutionWork();
+					preExDone = true;
+				}
 				while (!pdfs.isEmpty()) {
 					PDF temp;
 					temp = pdfs.get(0);
@@ -108,6 +119,43 @@ public class TemplateThread extends Service<Void> {
 	public void removeResult(PDF pdf){
 		
 	}
+	
+	public File generateResource(String input, String output) {
+		File f = new File(output);
+
+		// check to see if file already exists
+		if (f.exists()) {
+			return f;
+		}
+
+		try {
+			f.createNewFile();
+
+			// Copying the resource to the new file
+			InputStream is = Main.class.getResourceAsStream(input);
+			OutputStream os = new FileOutputStream(f);
+
+			int read = 0;
+
+			byte[] bytes = new byte[1024];
+
+			while ((read = is.read(bytes)) != -1) {
+				os.write(bytes, 0, read);
+			}
+
+			os.close();
+			is.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		f.deleteOnExit();
+		return f;
+	}
+
 
 	// run dependent tasks on PDFs after pre execution tasks have completed
 	private void addToReliant(PDF pdf) {
