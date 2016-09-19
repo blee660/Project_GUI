@@ -27,20 +27,11 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 	private File outputFolder;
 	private File abstractFolder;
 	private String templateCommand = "java -jar ";
+	public File keyphraseJar;
 	
 	// constructor
 	public KeyphraseExtractionWorker(){
 		super();
-		
-		// Get path of jar file to be executed
-		String resourcePath = getClass().getResource("/resources/KeyphraseExtract.jar").getPath();
-		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
-			resourcePath = resourcePath.substring(1, resourcePath.length());
-		}
-		
-		// Template command specifying the jar file to be executed
-		templateCommand = templateCommand + resourcePath + " ";
-		
 	}
 	
 	public void taskLogic(PDF pdf) {
@@ -97,6 +88,15 @@ public class KeyphraseExtractionWorker extends TemplateThread{
 		abstractFolder.mkdir();
 		
 		abstractFolder.deleteOnExit();
+		
+		keyphraseJar = generateResource("/resources/KeyphraseExtract.jar", outputFolder.getPath() +File.separator+"KeyphraseExtract.jar");
+		
+		String resourcePath = keyphraseJar.getPath();
+		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
+			resourcePath = resourcePath.substring(1, resourcePath.length());
+		}
+		// template command for running bibliography extraction	
+		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	public void removeResult(PDF pdf){

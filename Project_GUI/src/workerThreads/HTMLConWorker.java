@@ -21,17 +21,11 @@ public class HTMLConWorker extends TemplateThread{
 	// output folder to store output HTML file
 	private File outputFolder;
 	private String templateCommand = "java -jar ";
+	public File htmlJar;
 	
 	// constructor
 	public HTMLConWorker(){
 		super();
-		
-		String resourcePath = getClass().getResource("/resources/HTMLCon.jar").getPath();
-		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
-			resourcePath = resourcePath.substring(1, resourcePath.length());
-		}
-		// template command for running HTML conversion	
-		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override
@@ -68,6 +62,15 @@ public class HTMLConWorker extends TemplateThread{
 		// create output folder to store output file before main task is executed
 		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "html");
 		outputFolder.mkdir();
+		
+		htmlJar = generateResource("/resources/HTMLCon.jar", outputFolder.getPath() +File.separator+"HTMLCon.jar");
+		
+		String resourcePath = htmlJar.getPath();
+		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
+			resourcePath = resourcePath.substring(1, resourcePath.length());
+		}
+		// template command for running bibliography extraction	
+		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override

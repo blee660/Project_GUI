@@ -22,16 +22,11 @@ public class MetadataWorker extends TemplateThread{
 	private String templateCommand = "java -jar ";
 	// output folder to store output HTML file
 	private File outputFolder;
+	public File extractJar;
 	
 	// constructor
 	public MetadataWorker(){
 		super();
-		String resourcePath = getClass().getResource("/resources/PDFExtract.jar").getPath();
-		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
-			resourcePath = resourcePath.substring(1, resourcePath.length());
-		}
-		// template command for running HTML conversion	
-		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override
@@ -67,6 +62,15 @@ public class MetadataWorker extends TemplateThread{
 		// create output folder to store output file before main task is executed
 		outputFolder =  new File(Main.sessionDir.getPath() +  File.separator + "meta");
 		outputFolder.mkdir();
+		
+		extractJar = generateResource("/resources/PDFExtract.jar", outputFolder.getPath() +File.separator+"PDFExtract.jar");
+		
+		String resourcePath = extractJar.getPath();
+		if(System.getProperty("os.name").contains("indows") && resourcePath.startsWith("/")){
+			resourcePath = resourcePath.substring(1, resourcePath.length());
+		}
+		// template command for running bibliography extraction	
+		templateCommand = templateCommand + resourcePath + " ";
 	}
 	
 	@Override
