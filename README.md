@@ -27,8 +27,6 @@ More detailed descriptions of the tool can be found in the README files of each 
 
 The source code is explained below:
 
-When documents are added into the application, each of the four tools are executed concurrently on separate threads to improve the efficiency. The implementation of 
-
 ###Package - application
 Responsible for controlling the user interface and handling of actions.
 Contains fxml and css classes to contruct and style the GUI application.
