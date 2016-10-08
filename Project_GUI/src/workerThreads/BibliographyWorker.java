@@ -69,7 +69,6 @@ public class BibliographyWorker extends TemplateThread{
 		}
 		// template command for running bibliography extraction	
 		templateCommand = templateCommand + resourcePath + " ";
-
 	}
 	
 	@Override

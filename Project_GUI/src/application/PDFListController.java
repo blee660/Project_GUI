@@ -7,7 +7,9 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import pdfClasses.Library;
 import pdfClasses.PDF;
@@ -20,10 +22,16 @@ import pdfClasses.PDF;
  * @author Chuan-Yu Wu, Bom Yi Lee
  * 
  * */
-public class PDFListController{
+public class PDFListController {
 	
 	private FileChooser fc = new FileChooser();
 
+	@FXML
+	TextField search = new TextField();
+	
+	@FXML 
+	Button searchButton = new Button();
+	
 	@FXML
 	ListView<MyListItem> listView = new ListView<MyListItem>();
 	List<MyListItem> currentItems = new ArrayList<MyListItem>();
@@ -34,6 +42,12 @@ public class PDFListController{
 		Library.getInstance().registerDisplay(this);
 	}
 
+	@FXML
+	public void search(String searchString){
+		
+	}
+	
+	
 	//=============================================================================================================================
 	public void addPDF(ActionEvent event) {
 		
@@ -92,4 +106,5 @@ public class PDFListController{
 		listView.getItems().add(mli);
 		pdf.setListItem(mli);
 	}
+
 }
