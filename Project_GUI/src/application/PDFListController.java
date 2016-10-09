@@ -126,6 +126,7 @@ public class PDFListController {
 		// add item into current item list 
 		currentItems.add(mli);
 		// display item in list
+		listView.setItems(currentItems);
 		pdf.setListItem(mli);
 	}
 
