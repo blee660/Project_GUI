@@ -177,10 +177,16 @@
                   </HBox>
                </children>
                <padding>
-                  <Insets left="25.0" right="35.0" top="5.0" />
+                  <Insets bottom="5.0" left="25.0" right="35.0" top="5.0" />
                </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
          </content>
+         <opaqueInsets>
+            <Insets bottom="5.0" />
+         </opaqueInsets>
       </ScrollPane>
    </center>
 </BorderPane>

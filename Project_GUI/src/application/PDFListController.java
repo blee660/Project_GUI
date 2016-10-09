@@ -28,9 +28,6 @@ import pdfClasses.PDF;
 public class PDFListController {
 	
 	private FileChooser fc = new FileChooser();
-
-	@FXML
-	TextField search = new TextField();
 	
 	@FXML 
 	Button searchButton = new Button();
@@ -45,30 +42,8 @@ public class PDFListController {
 		setFilters();
 		Library.getInstance().registerDisplay(this);
 		listView.setItems(currentItems);
-		search.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { search(); } });
 	}
 
-	@FXML
-	public void search(){
-		String searchString = search.getText();
-
-		if (searchString == null || searchString.length() == 0
-				|| searchString.matches("\\s+")) {
-			listView.setItems(currentItems);
-			return;
-		}
-
-		searchItems.clear();
-		
-		for (MyListItem mli : listView.getItems()) {
-			if (mli.search(searchString)) {
-				searchItems.add(mli);
-			}
-		}
-		
-		 listView.setItems(searchItems);
-	}
-	
 
 	
 	//=============================================================================================================================
