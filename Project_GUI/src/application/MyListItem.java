@@ -205,11 +205,9 @@ public class MyListItem extends HBox {
 		});
 	}
 
-	public boolean search(String searchString) {
-		
-		System.out.println(searchString);
-		
+	public boolean search(String searchString) {		
 		for(String x : pdf.searchWords){
+			System.out.println(x);
 			if(x.toLowerCase().contains(searchString.toLowerCase())){
 				return true;
 			}

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="471.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PDFListController">
+<BorderPane prefHeight="471.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PDFListController">
    <top>
       <BorderPane prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TextField fx:id="search" prefHeight="26.0" prefWidth="177.0" BorderPane.alignment="CENTER">
+            <TextField fx:id="search" onAction="#search" prefHeight="26.0" prefWidth="177.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="5.0" top="5.0" />
                </BorderPane.margin>

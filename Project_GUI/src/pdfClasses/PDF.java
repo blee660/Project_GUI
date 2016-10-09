@@ -59,7 +59,6 @@ public class PDF {
 		}
 		// update title label of document
 		updateListItem();
-		
 		updateSearch();
 	}
 	

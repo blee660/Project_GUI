@@ -44,12 +44,11 @@ public class PDFListController {
 		// set filters to only show PDF documents
 		setFilters();
 		Library.getInstance().registerDisplay(this);
-		listView.setItems(currentItems);
-		search.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { search(); } });
 	}
 
 	@FXML
 	public void search(){
+
 		String searchString = search.getText();
 
 		if (searchString == null || searchString.length() == 0
@@ -58,18 +57,18 @@ public class PDFListController {
 			return;
 		}
 
-		searchItems.clear();
 		
-		for (MyListItem mli : listView.getItems()) {
+		searchItems.clear();
+
+		for (MyListItem mli : currentItems) {
+			System.out.println("here");
 			if (mli.search(searchString)) {
 				searchItems.add(mli);
 			}
 		}
 		
-		 listView.setItems(searchItems);
+		listView.setItems(searchItems);
 	}
-	
-
 	
 	//=============================================================================================================================
 	public void addPDF(ActionEvent event) {
