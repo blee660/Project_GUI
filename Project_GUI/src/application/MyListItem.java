@@ -3,6 +3,8 @@ package application;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -54,7 +56,6 @@ public class MyListItem extends HBox {
 
 	public MyListItem(String titleText, PDF pdf) {
 		super();
-
 		title.setTextOverrun(OverrunStyle.ELLIPSIS);
 		
 		// set document fields, style
@@ -202,6 +203,19 @@ public class MyListItem extends HBox {
 				dialogStage.close();		
 			}
 		});
+	}
+
+	public boolean search(String searchString) {
+		
+		System.out.println(searchString);
+		
+		for(String x : pdf.searchWords){
+			if(x.toLowerCase().contains(searchString.toLowerCase())){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

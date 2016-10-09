@@ -4,8 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -34,19 +37,39 @@ public class PDFListController {
 	
 	@FXML
 	ListView<MyListItem> listView = new ListView<MyListItem>();
-	List<MyListItem> currentItems = new ArrayList<MyListItem>();
+	ObservableList<MyListItem> currentItems = FXCollections.observableArrayList();
+	ObservableList<MyListItem> searchItems = FXCollections.observableArrayList();
 	
 	public PDFListController() {
 		// set filters to only show PDF documents
 		setFilters();
 		Library.getInstance().registerDisplay(this);
+		listView.setItems(currentItems);
+		search.setOnKeyPressed((event) -> { if(event.getCode() == KeyCode.ENTER) { search(); } });
 	}
 
 	@FXML
-	public void search(String searchString){
+	public void search(){
+		String searchString = search.getText();
+
+		if (searchString == null || searchString.length() == 0
+				|| searchString.matches("\\s+")) {
+			listView.setItems(currentItems);
+			return;
+		}
+
+		searchItems.clear();
 		
+		for (MyListItem mli : listView.getItems()) {
+			if (mli.search(searchString)) {
+				searchItems.add(mli);
+			}
+		}
+		
+		 listView.setItems(searchItems);
 	}
 	
+
 	
 	//=============================================================================================================================
 	public void addPDF(ActionEvent event) {
@@ -103,7 +126,7 @@ public class PDFListController {
 		// add item into current item list 
 		currentItems.add(mli);
 		// display item in list
-		listView.getItems().add(mli);
+		listView.setItems(currentItems);
 		pdf.setListItem(mli);
 	}
 
