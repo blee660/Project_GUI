@@ -25,6 +25,7 @@ public class PDF {
 	private ArrayList<String> keywords = new ArrayList<String>();
 	private File HTMLfile = null;
 	private File BiblioXML = null;
+	public ArrayList<String> searchWords = new ArrayList<String>();
 	
 	// metadata storer to keep extracted metadata information
 	private MetadataStorer mds = new MetadataStorer();
@@ -58,6 +59,8 @@ public class PDF {
 		}
 		// update title label of document
 		updateListItem();
+		
+		updateSearch();
 	}
 	
 	/**
@@ -139,6 +142,39 @@ public class PDF {
 		}
 	}
 	
+	// update the search terms after metadata extracted
+	private void updateSearch(){
+		if(mds.getTitle() != null){
+			searchWords.add(mds.getTitle());
+		}
+		
+		if(mds.getAbstractx() != null){
+			searchWords.add(mds.getAbstractx());
+		}
+		
+		if(mds.getAuthors() != null){
+			for(String x : mds.getAuthors()){
+				searchWords.add(x);
+			}
+		}
+		
+		if(mds.getDegree() != null){
+			searchWords.add(mds.getDegree());
+		}
+		
+		if(mds.getDegreeDiscp() != null){
+			searchWords.add(mds.getDegreeDiscp());
+		}
+		
+		if(mds.getAltTitle() != null){
+			searchWords.add(mds.getAltTitle());
+		}
+		
+		if(mds.getSupervisors() != null){
+			searchWords.add(mds.getSupervisors());
+		}
+	}
+	
 	// set filename as the string without prefix path 
 	private void addFileName(){
 		String[] split = file.getName().split("\\.");
@@ -161,6 +197,7 @@ public class PDF {
 	 */
 	public void addKeyWord(String keyword){
 		this.keywords.add(keyword);
+		this.searchWords.add(keyword);
 	}
 	
 	/**
