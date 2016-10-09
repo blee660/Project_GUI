@@ -43,7 +43,7 @@ public class PDFListController {
 	}
 
 	@FXML
-	public void search(String searchString){
+	public void search(){
 		
 	}
 	
